@@ -13,8 +13,8 @@
 </style>
 <body style="background-color:black">
 
-    <nav class = 'navbar' style="background-color: white;">
-        <p class = "navbar-brand">Book Recommender</p>
+    <nav class="navbar" style="background-color:white">
+        <a class="navbar-brand">My Book recommender</a>
         <ul class="nav navbar-nav">
             <li><a href="/">Home</a></li>
             <li><a href="/recommend">Recommend</a></li>
@@ -25,28 +25,37 @@
     <div class="container">
         <div class="row">
             <div class="col-md-12">
-                <h1 class="text-white" style="font-size:50px">Top 50 Books</h1>
+                <h1 class="text-white" style="font-size:50px">Recommend Books</h1>
+                <form action="/recommend_books" method="post">
+                    <input name="user_input" type="text" class="form-control"><br>
+                    <input type="submit" class="btn btn-lg btn-warning">
+                </form>
             </div>
 
-            {% for i in range(book_name|length)%}
-            <div class="col-md-3" style="margin-top:50px">
+        {% if data %}
+
+          {% for i in data %}
+                <div class="col-md-3" style="margin-top:50px">
                 <div class="card">
                     <div class="card-body">
-                        
-                        <img class="card-img-top" src="{{ image[i] }}">
-                        <p class="text-white">{{ book_name[i] }}</p>
-                        <h4 class="text-white">{{ author[i] }}</h4>
-                        <h4 class="text-white">Votes - {{ votes[i] }}</h4>
-                        <h4 class="text-white">Rating - {{ rating[i] }}</h4>
+                        <img class="card-img-top" src="{{i[2]}}">
+                        <p class="text-white">{{i[0]}}</p>
+                        <h4 class="text-white">{{i[1]}}</h4>
                     </div>
                 </div>
             </div>
-            {% endfor %}
-            
+
+          {% endfor %}
+
+
+        {% endif %}
+
+
+
+
+
         </div>
     </div>
-    
 
-    
 </body>
 </html>
